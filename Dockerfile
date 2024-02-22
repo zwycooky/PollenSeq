@@ -47,10 +47,11 @@ RUN R -e "install.packages('parallel')"
 RUN R -e "install.packages('ASMap')"
 
 RUN mkdir -p RephasingBins
+RUN git clone https://github.com/zwycooky/PollenSeq.git
 COPY ./PollenSeq/00_Softwares/Rephasing-script/ /RephasingBins/
 RUN chmod +x /RephasingBins/*
 
-# RUN git clone https://github.com/zwycooky/RephasingBins.git
+#RUN git clone https://github.com/zwycooky/PollenSeq.git
 # Add the R library path to the PATH variable so that it is available to your applications.
 ENV PATH=$PATH:$R_HOME/lib/R/library
 
