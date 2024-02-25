@@ -22,10 +22,15 @@ binmap <- binmap[,gmtmiss <= 0.1]
 dat <- list()
 
 file_names <- list.files(path = Linkage, pattern="lg")
+select_file <- NULL
 for(i in 1:length(file_names)) {
         name <- gsub(".txt","",file_names[i])
         dat[[name]] <- read.table(paste0(Linkage,"/", file_names[i]),header=F,sep="\t")
+	if (nrow(dat[[name]]) > 1) {
+		select_file <- c(select_file,i)
+	}
 }
+dat <- dat[select_file]
 
 co_detector <- function(gmt,hap1) {
         comp <- as.numeric(gmt == hap1)
