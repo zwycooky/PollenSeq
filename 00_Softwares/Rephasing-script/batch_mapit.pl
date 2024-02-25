@@ -3,11 +3,24 @@
 use strict;
 use Cwd 'abs_path';
 use Parallel::ForkManager;
+use Getopt::Std;
+our($opt_i,$opt_o,$opt_f,$opt_p,$opt_t);
+getopts('i:o:f:p:t:');
 
-my ($inputdir,$outputdir,$ref_genome,$mapping_cpu, $cpu) = @ARGV[0,1,2,3,4];
-my $Usage = "\n\t$0 <input fastq dir> <out bam dir> <genome> <mapping threads> <threads>
+my $inputdir = $opt_i;
+my $outputdir = $opt_o;
+my $ref_genome = $opt_f;
+my $mapping_cpu = $opt_p;
+my $cpu = $opt_t;
+
+my $Usage = "\n\t$0 
+	-i <input fastq dir>
+	-o <out bam dir>
+	-f <genome>
+	-p <mapping threads>
+	-t <threads>
 \n";
-die $Usage unless (@ARGV == 5);
+die $Usage unless ($opt_i && $opt_o && $opt_f && $opt_p && $opt_t);
 
 chomp(my $pwd = `pwd`);
 
