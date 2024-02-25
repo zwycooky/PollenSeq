@@ -10,12 +10,13 @@ outdir <- args[2]
 dat <- read.table(input,header=T)
 dat <- as.matrix(dat)
 missing_vec <- NULL
+miss_threshold <- round(ncol(dat) * 0.3)
 for (i in 1:nrow(dat)) {
 	dat[i,] <- sub("A",0,dat[i,])
 	dat[i,] <- sub("B",1,dat[i,])
 	dat[i,] <- sub("U",NA,dat[i,])
 	## missing rate, can be modified
-	if (sum(is.na(dat[i,])) > 30 ) {
+	if (sum(is.na(dat[i,])) > miss_threshold ) {
 		missing_vec <- c(missing_vec,i)
 	}
 }
