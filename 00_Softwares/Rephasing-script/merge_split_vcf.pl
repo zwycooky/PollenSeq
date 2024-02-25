@@ -30,17 +30,17 @@ while (<IN>) {
 		$count = 1;
 	}else{
 		open VCF,'<',"$path" or die "Cannot open $path:$!";
-                while (<VCF>) {
-                        chomp;
+        while (<VCF>) {
+            chomp;
 			if (/\A#/) { next };
 			my ($chr,$pos) = (split)[0,1];
-                        my $key = "$chr\t$pos";
+            my $key = "$chr\t$pos";
 			if (!exists $ex{$key}) {
-                        	print OUT "$_\n";
+                print OUT "$_\n";
 				$ex{$key} = 1;
 			}
-                }
-                close VCF;
+		}
+        close VCF;
 	}
 }
 close IN;
