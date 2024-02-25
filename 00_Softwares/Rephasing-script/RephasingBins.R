@@ -31,7 +31,7 @@ list_count = 0
 phasing_final_mat_list <- list()
 wrong_phasing_bins <- NULL
 
-while (length(nrow(dat)) > 0) {
+while (nrow(dat) > 0) {
 remove_vec <- NULL
 mnames <- NULL
 phasing_mat <- NULL
@@ -106,7 +106,7 @@ if (length(wmnames) == 0 & length(mnames) == 0) {
 		dat <- dat[-remove_vec,]
 	}
 }
-
+dat <- rbind(NULL,dat)
 }
 
 list_count = list_count + 1
