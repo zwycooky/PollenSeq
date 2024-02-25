@@ -41,7 +41,7 @@ foreach (sort keys %hap_file) {
         my $contig_id = $_;
         if (exists $co_file{$_}) {
                 !system "$find_bin_script $co_file{$_} $hap_file{$_}" or die "Error with find bins:$!";
-                print "$find_bin_script $co_file{$_} $hap_file{$_}\n";
+                #print "$find_bin_script $co_file{$_} $hap_file{$_}\n";
         }else{
                 !system "$find_bin_script2 $hap_file{$_} $len_file" or die "Error with find bins2:$!";
         }
