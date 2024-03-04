@@ -6,13 +6,14 @@ Weiyi Zhang and Arslan Tariq
 2024-2-27
 
 # 1. make project directories and sub-directories; Timming < 1 min
+```
 mkdir -p PollenSeq/{00_Softwares,01_Reads.data,\
     02_Genome.data,03_Alignment-sperm,03_Alignment-parent,\
     04_SNP.sperm,04_SNP.parent,parent_tmpdir,sperm_tmpdir,05_Final.SNP}
 mkdir PollenSeq/01_Reads.data/{Raw_reads,Clean_reads,Clean_reads_parent, \
     Clean_reads_spermCell}
 export $POLLEN_DIR=`realpath PollenSeq`
-
+```
 ⚠️ Please keep in mind, the $POLLEN_DIR is your work directory.
 
 # 2. Download data; Timing < 60 min
