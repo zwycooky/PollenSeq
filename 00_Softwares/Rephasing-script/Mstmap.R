@@ -23,7 +23,7 @@ results <- mstmap.data.frame(df,
                   noMap.size = 0,
                   miss.thresh = 1.00,
                   objective.fun = "COUNT",
-                  detectBadData = TRUE,trace = TRUE
+                  detectBadData = TRUE,trace = FALSE
                   )
 
 
