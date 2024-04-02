@@ -37,10 +37,10 @@ foreach (@file) {
                 my $vcf_list = join(",",@tmp);
                 $jobs ++;
                 $counter = 0;
+				@tmp = ();
 				$pm->start and next;
 				&phasing_sge($vcf_list,$jobs);
 				$pm->finish;
-                @tmp = ();
         }
 }
 $pm->wait_all_children();
