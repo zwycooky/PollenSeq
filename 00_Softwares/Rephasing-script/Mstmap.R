@@ -8,6 +8,7 @@ args=commandArgs(T)
 
 input <- args[1]
 outdir <- args[2]
+pvalue <- args[3]
 
 df <- read.csv(input, sep = "\t", header = TRUE)
 
@@ -17,7 +18,7 @@ dir.create(outdir)
 results <- mstmap.data.frame(df,
                   pop.type = "DH",
                   dist.fun = "kosambi",
-                  p.value = 0.00000001,
+                  p.value = pvalue,
                   noMap.dist = 15.0,
                   noMap.size = 0,
                   miss.thresh = 1.00,
@@ -35,18 +36,19 @@ for (group_name in names(results$geno)) {
 
 
 
-png(paste0(outdir,"/MStmap_result_sumamry.png"), width = 15, height = 10)
+pdf(paste0(outdir,"/MStmap_result_sumamry.pdf"), width = 15, height = 10)
 plot(results)
 dev.off()
 
-png(paste0(outdir, "/MStmap_Missing.png"), width = 6, height = 6)
+pdf(paste0(outdir, "/MStmap_Missing.pdf"), width = 6, height = 6)
 plotMissing(results)
 dev.off()
 
-png(paste0(outdir, "/MStmap_GeneticMap.png"),  width = 6, height = 6)
+pdf(paste0(outdir, "/MStmap_GeneticMap.pdf"),  width = 6, height = 6)
 plotMap(results)
 dev.off()
 
-png(paste0(outdir, "/MStmap_pheno.png"),  width = 6, height = 6)
+pdf(paste0(outdir, "/MStmap_pheno.pdf"),  width = 6, height = 6)
 plotPheno(results, pheno.col=1)
 dev.off()
+

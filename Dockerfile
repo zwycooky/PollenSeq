@@ -15,7 +15,7 @@ RUN apt-get install -y libncurses-dev && apt-get install -y liblzma-dev && apt i
 
 RUN apt-get install -y libcurl4-openssl-dev && apt install -y unzip && apt-get install -y openjdk-17-jdk
 
-RUN wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz && tar -xzf sratoolkit.current-ubuntu64.tar.gz
+#RUN wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz && tar -xzf sratoolkit.current-ubuntu64.tar.gz
 
 RUN wget http://opengene.org/fastp/fastp && chmod a+x ./fastp
 
@@ -37,7 +37,6 @@ RUN cpanm -y Cwd
 RUN cpanm -y Getopt::Std
 RUN cpanm -y Parallel::ForkManager
 RUN apt-get install -y r-base r-base-dev
-# RUN R -e "install.packages('devtools')"
 RUN R -e "install.packages('HMM')"
 RUN apt-get install -y libcurl4-openssl-dev libssl-dev
 RUN R -e "install.packages('openssl')"
@@ -46,16 +45,13 @@ RUN R -e "devtools::install_github('Jialab-UCR/Hapi')"
 RUN R -e "install.packages('parallel')"
 RUN R -e "install.packages('ASMap')"
 
-RUN mkdir -p RephasingBins
 RUN git clone https://github.com/zwycooky/PollenSeq.git
-COPY ./PollenSeq/00_Softwares/Rephasing-script/ /RephasingBins/
-RUN chmod +x /RephasingBins/*
+RUN chmod +x /PollenSeq/00_Softwares/Rephasing-script/*
 
-#RUN git clone https://github.com/zwycooky/PollenSeq.git
 # Add the R library path to the PATH variable so that it is available to your applications.
 ENV PATH=$PATH:$R_HOME/lib/R/library
 
-ENV PATH=$PATH:/RephasingBins/:/Trimmomatic-0.39/:/./:/samtools-1.17/:/gatk-4.4.0.0/:/bwa/:/sratoolkit.3.0.7-ubuntu64/bin/
+ENV PATH=$PATH:/PollenSeq/00_Softwares/Rephasing-script/:/Trimmomatic-0.39/:/./:/samtools-1.17/:/gatk-4.4.0.0/:/bwa/:/sratoolkit.3.0.7-ubuntu64/bin/
 
 # Start a new shell session when the container runs
 CMD ["/bin/bash"]
