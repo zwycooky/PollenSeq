@@ -18,7 +18,7 @@ ref <- hetDa$ref
 alt <- hetDa$alt
 
 #gmtDa <- gmt[, c(colnames(gmt)[grepl("[QSC]",colnames(gmt))], "hap1", "hap2") ]
-gmtDa <- gmt[,5:(ncol(gmtDa)-3)]
+gmtDa <- gmt[,5:(ncol(gmt)-3)]
 gmtDa <- base2num(gmt = gmtDa, ref = ref, alt = alt)
 
 
