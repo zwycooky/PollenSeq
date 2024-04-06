@@ -17,7 +17,8 @@ rownames(chr_lens) <- chr_lens[,1]
 mycontig <- as.character(dat[1,1])
 
 haps <- dat[,c("hap1","hap2")]
-hapdat <- dat[,grepl("[QSC]",colnames(dat))]
+#hapdat <- dat[,grepl("[QSC]",colnames(dat))]
+hapdat <- dat[,5:(ncol(dat)-5)]
 
 ## co == 0 ##
 phasing_dat <- matrix(0,nrow=1,ncol=ncol(hapdat))
