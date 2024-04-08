@@ -7,11 +7,14 @@ my $Usage = "\n\t$0 <re-pased bins> <binmap.txt> <wrong phasing bins> <haps dir>
 \n";
 die $Usage unless (@ARGV == 6);
 
-my %keep_bins;
+my (%keep_bins,$header_line);
 open IN,'<',"$bins" or die;
 while (<IN>) {
 	chomp;
-	if (/\Alocus_name/) { next };
+	if ($header_line == 0) {
+	       	$header_line = 1;
+		next;
+	}
 	my $id = (split)[0];
 	#if ($id eq $exclude) { next };
 	$keep_bins{$id} = 1;
@@ -54,8 +57,11 @@ foreach (@hapfile) {
 		foreach (@tmp) {
 			my ($id,$s,$e) = split;
 			if ($pos >= $s && $pos <= $e) {
-				
-				my $chr_num = (split /chr/,$chr)[1];
+				my $chr_num = $chr;
+				if ($chr =~ /chr/) {
+					$chr_num = (split /chr/,$chr)[1];
+				}
+
 				my $snp_id = "$chr_num\_$pos";
 				
 				if (exists $wrong_bin{$id}) {
@@ -80,6 +86,7 @@ foreach (@linkage_file) {
 	while (<LINK>) {
 		chomp;
 		my ($id,$cM) = split;
+		if (!exists $correct_hap->{$id}) { next };
 		my @tmp = @{$correct_hap->{$id}};
 		foreach (@tmp) {
 			print OUT "$id\t$chr\t$_\n";
