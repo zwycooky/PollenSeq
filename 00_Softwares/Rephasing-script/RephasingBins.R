@@ -126,6 +126,7 @@ for (i in 1:nrow(final_res)) {
 }
 
 
+final_res <- final_res[rownames(final_res) != "dat", ]
 dim(final_res)
 
 write.table(final_res, paste0(outdir, "/merged_binMarkers.re-phasing.co8.missing30.txt"),row.names=T,col.names=T,quote=F,sep="\t")
