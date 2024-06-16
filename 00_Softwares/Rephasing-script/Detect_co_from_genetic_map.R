@@ -8,6 +8,10 @@ binmap_file <- Args[1]
 Linkage <- Args[2]
 output <- Args[3]
 
+#binmap_file <- "merged_binMarkers.re-phasing.co8.missing30.txt"
+#Linkage <- "Linkage_group"
+#output <- "co.final.txt"
+
 binmap <- read.table(binmap_file, header=T)
 binmap[binmap == "U"] <- NA
 
@@ -36,7 +40,10 @@ co_detector <- function(gmt,hap1) {
         comp <- as.numeric(gmt == hap1)
         names(comp) <- 1:length(comp)
         comp <- comp[!is.na(comp)]
-
+		if (length(comp) == 1) {
+			res <- cbind(integer(length=0))
+			return(res)
+		}
 
     hmm = initHMM(States=c("F","M"),
         Symbols=c("f","m"),
