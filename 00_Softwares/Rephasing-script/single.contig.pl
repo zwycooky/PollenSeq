@@ -41,6 +41,7 @@ foreach (@file) {
 				$pm->start and next;
 				&phasing_sge($vcf_list,$jobs);
 				$pm->finish;
+				@tmp = ();
         }
 }
 $pm->wait_all_children();
