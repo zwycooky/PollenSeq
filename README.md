@@ -5,6 +5,12 @@ Weiyi Zhang and Arslan Tariq
 
 2024-2-27
 
+# System Requirements
+## OS Requirements:
+Computer with 64-bit Linux operating system (tested on ubuntu 20.04 LTS). 
+## Hardware Requirements:
+We recommend using 128 Gb RAM with at least 50 cores for a single machine for NGS reads mapping, SNP calling and phasing. The running time of this protocol is dependent on the CPU node core numbers   and your data size. Required disk space depends on the sample; 42 Gb are required for the test data in this protocol. A stable internet connection is required for running scripts and downloading data in this protocol.
+
 # 1. make project directories and sub-directories; Timming < 1 min
 ```
 mkdir -p PollenSeq/{00_Softwares,01_Reads.data,\
